@@ -5,29 +5,31 @@
     include_once("conectaBD.php");
     //tabela no banco de dados
     $tabela="alunos";
-    //def
-    $campos="nome";
+    //define campos do insert
+    $campoNome="nome";
+    $campoIdade="idade";
 
 
     // se o botão for pressionado
-    if(isset($_GE
-        $nome = $_GET['nomeAluno'];
-        //Script para inserir um registro na tabela no Banco de Dados
-        $sql = "INSERT INTO $tabela ($campos)
-                VALUES ('$nome')";
-        //executando instrução sql
-        
-        //concluindo operação
-        if (!$instrucao) {
-            die('Query inválida '.mysqli_error($conexao));
-        } else {
-            mysqli_close($conexao);
-
- 
-            <a href='index.php' id='linkVoltar'>Voltar</a>";
-            exit;
+        if(isset($_GET['enviar'])){
+            $nomeAluno = $_GET['nomeAluno'];
+            $idadeAluno = $_GET['idadeAluno'];
+            //Script para inserir um registro na tabela no Banco de Dados
+                $sql = "INSERT INTO $tabela ($campoNome)
+                        VALUES ('$nomeAluno')";
+                $sql2 = "INSERT INTO $tabela ($campoIdade)
+                VALUES ('$idadeAluno')";
+            //executando instrução sql
+            $instrucao = mysqli_query($conexao,$sql,$sql2);
+            //concluindo operação
+            if (!$instrucao) {
+                die('Query inválida '.mysqli_error($conexao));
+            } else {
+                mysqli_close($conexao);
+                echo "<a href='index.php' id='linkVoltar'>Voltar</a>";
+                exit;
+            }
         }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -91,10 +93,11 @@ a:hover{
                 <div id="background-white">
                     <h2>Cadastro do Aluno</h2>
                     <input type="text" name="nomeAluno" class="input nome" placeholder="Nome completo">
-                    <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "> 
                     <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18" min="15">
                     <button name="enviar" type="submit">Enviar</button>
-                    <!-- <a href="index.php" id="linkVoltar">Voltar</a> -->
+                    <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "--> 
+                    <!-- -->
+                    <!-- a href="index.php" id="linkVoltar">Voltar</a> -->
                 </div>
         </main>
 
