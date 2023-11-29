@@ -30,7 +30,7 @@
                 echo "<a href='index.php' id='linkVoltar'>Voltar</a>";
                 exit;
             }
-        }
+        }   
 ?>
 
 <!DOCTYPE html>
