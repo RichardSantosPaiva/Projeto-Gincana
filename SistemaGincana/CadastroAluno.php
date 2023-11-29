@@ -5,6 +5,7 @@
     include_once("conectaBD.php");
     //tabela no banco de dados
     $tabela="alunos";
+
     //define campos do insert
     $campoNome="nome";
     $campoIdade="idade";
@@ -29,7 +30,7 @@
                 echo "<a href='index.php' id='linkVoltar'>Voltar</a>";
                 exit;
             }
-        }
+
 ?>
 
 <!DOCTYPE html>
@@ -95,9 +96,7 @@ a:hover{
                     <input type="text" name="nomeAluno" class="input nome" placeholder="Nome completo">
                     <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18" min="15">
                     <button name="enviar" type="submit">Enviar</button>
-                    <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "--> 
-                    <!-- -->
-                    <!-- a href="index.php" id="linkVoltar">Voltar</a> -->
+
                 </div>
         </main>
 
