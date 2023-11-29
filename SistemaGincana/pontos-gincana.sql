@@ -1,4 +1,4 @@
-DROP DATABASE  gincana;
+DROP DATABASE IF EXISTS  gincana;
 CREATE DATABASE gincana;
 USE gincana;
 
