@@ -1,0 +1,40 @@
+ANOTALÇÕES
+
+Fiz anotações pra ajudar a orientar o processo,
+e descobrindo o que precisa ou não..
+
+O que usei
+
+figma
+worckbacnk
+php
+remove bg
+
+lógica
+
+1- pegar o pontos
+
+2 - selecionar a turma
+
+3- enviar
+
+4- pontos registrados
+4 - pontos consultados
+
+________
+
+BANCO DE DADOS
+ok -criei a base de dados - mysql worckbanch
+
+SISTEMA
+
+criar a página de pesquisa - ponto dos alunos (Lógica do sistema)
+
+	-> pesquisa dos pontos do aluno; obs:(baseado no dia 1,2,3)
+		-> se o aluno estiver cadastrado, faça a inserção dos pontos, retorno dos pontos
+	
+	-> pesquisa dos pontos da sala ao todo
+		-> mostrar o ponto total da sala, baseado no curso que é a pessoa.
+ALUNOS
+
+eles tem que inserir o dados já somado do primeiro dia

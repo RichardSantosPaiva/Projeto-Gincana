@@ -1,0 +1,69 @@
+
+#background-red {
+    background-color: rgb(255, 0, 0,0.8);
+    border-radius:10px;
+    margin: 0 auto;
+    padding:40px 0px;
+    width: 80%;
+    height: 34em;
+}
+
+#background-white{
+    border: 1px solid blue;
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    padding: 20px;
+    margin: 0 auto;
+    height: 30em;
+
+}
+
+input.pontos, input.senha, input.nome, input.idade{
+    width: 500px;
+    padding: 20px;
+    font-size: 1.2em;
+    outline: 0px;
+}
+
+input, #inputs-radio, button{
+margin-top: 20px;
+}
+
+input.pontos:focus, input.senha:focus, 
+input.nome:focus, input.idade:focus {
+border: 3px solid red;
+}
+
+input[type="radio"]{
+    margin-right: 10px;
+}
+
+#inputs-radio {
+    font-size: 1.3em;
+}
+button {
+    background-color: rgb(180, 178, 178);
+    color: rgb(125, 124, 124);
+    display: block;
+    font-size: 1.6em;
+    font-weight: 300;  
+    padding: 10px;
+    margin: 30px  auto 0px auto;
+    width: 400px;
+    border: 0px;
+    transition: 0.2s  background-color ;
+}
+
+button:hover{
+    color: white;
+    background-color: rgb(255, 0, 0,0.8) ;
+    outline: 0px;
+    border: 0px;
+}
+
+h2 {
+    font-size: 2.4em;
+    text-align: center;
+}
+    
