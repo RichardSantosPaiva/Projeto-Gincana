@@ -1,0 +1,26 @@
+a {
+    background-color: rgb(180, 178, 178);
+    border: 0px;
+    color: rgb(125, 124, 124);
+    display: block;
+    font-size: 1.6em;
+    font-weight: 300;  
+    padding: 10px;
+    margin: 30px  auto 0px auto;
+    width: 400px;
+    text-decoration: none;
+    transition: 0.2s  background-color ;
+    text-align: center;
+    display: none;
+}
+
+a:hover{
+    color: white;
+    background-color: rgb(255, 0, 0,0.8) ;
+    outline: 0px;
+    border: 0px;
+}
+
+.exebir {
+    display: block;
+}
