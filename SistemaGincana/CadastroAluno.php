@@ -5,27 +5,31 @@
     include_once("conectaBD.php");
     //tabela no banco de dados
     $tabela="alunos";
-    //def
     $campos="nome";
 
 
     // se o botão for pressionado
-    if(isset($_GE
+    if(isset($_GET['enviar'])){
         $nome = $_GET['nomeAluno'];
         //Script para inserir um registro na tabela no Banco de Dados
         $sql = "INSERT INTO $tabela ($campos)
                 VALUES ('$nome')";
+                
         //executando instrução sql
-        
+
+        $instrucao = mysqli_query($conexao,$sql);
         //concluindo operação
+
         if (!$instrucao) {
             die('Query inválida '.mysqli_error($conexao));
         } else {
             mysqli_close($conexao);
 
  
-            <a href='index.php' id='linkVoltar'>Voltar</a>";
+            echo "<a href='index.php' id='linkVoltar'>Voltar</a>";
+            echo "$nome adicionado com sucesso'";
             exit;
+        
         }
     }
 ?>
@@ -91,10 +95,9 @@ a:hover{
                 <div id="background-white">
                     <h2>Cadastro do Aluno</h2>
                     <input type="text" name="nomeAluno" class="input nome" placeholder="Nome completo">
-                    <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "> 
                     <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18" min="15">
                     <button name="enviar" type="submit">Enviar</button>
-                    <!-- <a href="index.php" id="linkVoltar">Voltar</a> -->
+                     <a href="index.php" id="linkVoltar">Voltar</a>
                 </div>
         </main>
 
