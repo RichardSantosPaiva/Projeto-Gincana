@@ -1,34 +1,31 @@
-
-
 <?php
     //conecta ao banco
     include_once("conectaBD.php");
     //tabela no banco de dados
     $tabela="alunos";
-
     //define campos do insert
-    $campoNome="nome";
-    $campoIdade="idade";
-
+    $campos = "nome, idade, idTurma";
 
     // se o botão for pressionado
         if(isset($_GET['enviar'])){
             $nomeAluno = $_GET['nomeAluno'];
             $idadeAluno = $_GET['idadeAluno'];
+            $idTurmas = $_GET['turmas'];
+
             //Script para inserir um registro na tabela no Banco de Dados
-                $sql = "INSERT INTO $tabela ($campoNome)
-                        VALUES ('$nomeAluno')";
-                $sql2 = "INSERT INTO $tabela ($campoIdade)
-                VALUES ('$idadeAluno')";
+
+             $sql = "INSERT INTO $tabela ($campos)
+                        VALUES ('$nomeAluno', $idadeAluno , $idTurmas)";
             //executando instrução sql
-            $instrucao = mysqli_query($conexao,$sql,$sql2);
+            $instrucao = mysqli_query($conexao,$sql);
             //concluindo operação
+
             if (!$instrucao) {
                 die('Query inválida '.mysqli_error($conexao));
             } else {
                 mysqli_close($conexao);
-                echo "<a href='index.php' id='linkVoltar'>Voltar</a>";
-                exit;
+                header('Location: index.php'); 
+                // O header leva para a pagina inicial
             }
         }   
 ?>
@@ -95,6 +92,16 @@ a:hover{
                     <h2>Cadastro do Aluno</h2>
                     <input type="text" name="nomeAluno" class="input nome" placeholder="Nome completo">
                     <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18" min="15">
+                    
+                    <select name="turmas" >
+                        <option value="1">1º INFO</option>
+                        <option value="2">2º INFO</option>
+                        <option value="3">3º INFO</option>
+                        <option value="1">1º ADM</option>
+                        <option value="2">2º ADM</option>
+                        <option value="3">3º ADM</option>
+                    </select>
+
                     <button name="enviar" type="submit">Enviar</button>
 
                 </div>

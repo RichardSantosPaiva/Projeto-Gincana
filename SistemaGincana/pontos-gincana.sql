@@ -2,10 +2,6 @@ DROP DATABASE  gincana;
 CREATE DATABASE gincana;
 USE gincana;
 
-CREATE TABLE curso (
-    idCurso INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    curso VARCHAR(20) /*INFO, ADM, RH*/
-);
 CREATE TABLE diasGincana(
 	idDiaGincana INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     dia DATE
@@ -44,15 +40,13 @@ create table AlunosTurma (
 );
 */
 
-/* Inserindo os dados na tabela cursos */
-INSERT INTO curso (curso) VALUES ('INFO');
-INSERT INTO curso (curso) VALUES ('ADM');
-INSERT INTO curso (curso) VALUES ('RH');
-
 /* Inserindo os dados na tabela turma */
-INSERT INTO turmas (turma, idCurso) VALUES ('1º INFO', 1);
-INSERT INTO turmas (turma, idCurso) VALUES ('2º INFO', 1);
-INSERT INTO turmas (turma, idCurso) VALUES ('3º INFO', 1);
-INSERT INTO turmas (turma, idCurso) VALUES ('1º ADM', 2);
+INSERT INTO turmas (turma) VALUES ('1º INFO');
+INSERT INTO turmas (turma) VALUES ('2º INFO');
+INSERT INTO turmas (turma) VALUES ('3º INFO');
+INSERT INTO turmas (turma) VALUES ('1º ADM');
+INSERT INTO turmas (turma) VALUES ('2º ADM');
+INSERT INTO turmas (turma) VALUES ('3º ADM');
 
 
+ 
