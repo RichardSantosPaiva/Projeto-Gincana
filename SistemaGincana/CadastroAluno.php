@@ -25,7 +25,7 @@
             } else {
                 mysqli_close($conexao);
                 header('Location: index.php'); 
-                // O header leva para a pagina inicial
+                // O header leva para a pagina inic
             }
         }   
 ?>
