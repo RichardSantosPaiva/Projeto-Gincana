@@ -48,6 +48,7 @@ if (isset($GET['enviar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Gincana</title>
+    <link rel="stylesheet" href="css/tabela-pontos.css">    
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/forms.css">
 
@@ -112,13 +113,58 @@ if (isset($GET['enviar'])) {
 
                     <button name="enviar" type="submit">Enviar</button>
                 </div>
-                <table>
+            </form>
 
+            <div id="pontos" class="background-red-pontos">
+                <div class="background-white-pontos">
+                     
+                    <div id="tabela-pontos">
 
+                            <div id="pontos-alunos"><!-- comeco pontos alunos -->
+                                <h3>Alunos</h3>
 
+                                <div id="titulo-tbl-alunos"> <!-- começo cabecalho aluno-->
+                                    <div>
+                                        <h4>Id</h4>
+                                    </div>
+                                    <div>
+                                        <h4>Nome</h4>
+                                    </div>
+                                    <div>
+                                        <h4>Pontos individual</h4>
+                                    </div>
+                                </div> <!-- final cabecalho aluno-->
+                                
+                                <div id="dados-alunos"> <!--comeco dados alunos -->
+                                    <div>
+                                        <p>id aluno</p>
+                                    </div>
+                                    <div>
+                                        <p>nome aluno</p>
+                                    </div>
+                                    <div>
+                                       <p>pontos aluno</p>
+                                    </div>
+                                </div><!-- final dados alunos-->
 
-                
-                </table>
+                            </div><!--final ponto alunos -->
+
+                            <div id="pontos-turma"> <!-- comeco pontos turma-->
+                                <h3>Turma</h3>
+                               
+                                <div id="titulo-tbl-turma">
+                                    <h4>pontos total</h4>
+                                </div>
+                                <div id="dados-turma">
+                                    <p>pontos total da turma</p>
+                                </div>
+
+                            </div> <!-- fnal pontos turma-->
+
+                    </div>
+
+                </div>
+            </div>
         </main>
 
     </div>
