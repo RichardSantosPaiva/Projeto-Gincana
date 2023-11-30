@@ -33,7 +33,6 @@ E fazer o crud mais pra frente .. n lembro. A página de referência/original
 
 <?php 
     if(isset($_GET['enviar'])){
-       
         $pontos = $_GET['ponto'];
         echo "<p>vc pontou $pontos</p>";
 
