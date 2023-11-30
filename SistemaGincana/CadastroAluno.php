@@ -1,30 +1,38 @@
 <?php
-//conecta ao banco
-include_once("conectaBD.php");
-//tabela no banco de dados
-$tabela = "alunos";
-//define campos do insert
-$campos = "nome, idade";
-// se o botão for pressionado
-if (isset($_GET['enviar'])) {
-    $nomeAluno = $_GET['nomeAluno'];
-    $idadeAluno = $_GET['idadeAluno'];
-    $curso = $_GET['curso'];
-    echo "$curso";
-    //Script para inserir um registro na tabela no Banco de Dados
-    $sql = "INSERT INTO $tabela ($campos)
-            VALUES ('$nomeAluno','$idadeAluno')";
-    //executando instrução sql
-    $instrucao = mysqli_query($conexao, $sql);
-    //concluindo operação
-    if (!$instrucao) {
-        die('Query inválida ' . mysqli_error($conexao));
-    } else {
-        mysqli_close($conexao);
-        echo "<a href='index.php' id='linkVoltar'>Voltar</a>";
-        exit;
-    }
-}
+    //conecta ao banco
+    include_once("conectaBD.php");
+    //tabela no banco de dados
+    $tabela="alunos";
+    //define campos do insert
+    $campos = "nome, idade, idTurma";
+
+    // se o botão for pressionado
+        if(isset($_GET['enviar'])){
+            $nomeAluno = $_GET['nomeAluno'];
+            $idadeAluno = $_GET['idadeAluno'];
+            $idTurmas = $_GET['turmas'];
+
+            //Script para inserir um registro na tabela no Banco de Dados
+
+             $sql = "INSERT INTO $tabela ($campos)
+                        VALUES ('$nomeAluno', $idadeAluno , $idTurmas)";
+            //executando instrução sql
+            $instrucao = mysqli_query($conexao,$sql);
+            //concluindo operação
+
+            if (!$instrucao) {
+                die('Query inválida '.mysqli_error($conexao));
+            } else {
+                mysqli_close($conexao);
+                header('Location: index.php'); 
+                // O header leva para a pagina inicial
+            }
+        }   
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c0b16e8479f6b583a0ffb1ac36951c6632954ad7
 ?>
 
 <!DOCTYPE html>
@@ -88,15 +96,18 @@ if (isset($_GET['enviar'])) {
                 <div id="background-white">
                     <h2>Cadastro do Aluno</h2>
                     <input type="text" name="nomeAluno" class="input nome" placeholder="Nome completo">
-                    <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18"min="15"><br>
-                    <label>ADM</label>
-                    <input type="radio" name="curso" id="1 info" value="ADM">
-                    <label>INFO</label>
-                    <input type="radio" name="curso" id="2 info" value="INFO">
-                    <label>CONT</label>
-                    <input type="radio" name="curso" id="3 info" value="CONT"><br><br>
-                    <button name="enviar" type="submit">Enviar</button>
+                    <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18" min="15">
+                    
+                    <select name="turmas" >
+                        <option value="1">1º INFO</option>
+                        <option value="2">2º INFO</option>
+                        <option value="3">3º INFO</option>
+                        <option value="1">1º ADM</option>
+                        <option value="2">2º ADM</option>
+                        <option value="3">3º ADM</option>
+                    </select>
 
+                    <button name="enviar" type="submit">Enviar</button>
                 </div>
         </main>
 
