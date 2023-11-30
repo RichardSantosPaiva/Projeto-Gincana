@@ -18,8 +18,7 @@ lógica
 
 3- enviar
 
-4- pontos registrados
-4 - pontos consultados
+4- pontos registrados/consultados
 
 ________
 
