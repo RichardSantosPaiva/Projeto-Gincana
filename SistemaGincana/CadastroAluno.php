@@ -28,11 +28,6 @@
                 // O header leva para a pagina inicial
             }
         }   
-<<<<<<< HEAD
-=======
-
-
->>>>>>> c0b16e8479f6b583a0ffb1ac36951c6632954ad7
 ?>
 
 <!DOCTYPE html>
