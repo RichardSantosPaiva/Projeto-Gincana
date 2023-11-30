@@ -5,6 +5,40 @@ Registro dos dados/consulta
 o aluno ver a pontuação na tabela dele
  -->
 
+ <?php
+
+    include_once("conectaBD.php");
+
+    $tabela= "diasGincana";
+    $campos= "dia";
+
+    
+
+    if(isset($GET['enviar'])){
+        $pontosAluno = $_GET['pontosAluno'];
+        $diaGincana = $_GET['diaGincana'];
+
+        //Script para inserir um registro na tabela no Banco de Dados
+
+        $sql = "INSERT INTO $tabela ()
+        VALUES ()";
+
+
+        //executando instrução sql
+        $instrucao = mysqli_query($conexao,$sql);
+        //concluindo operação
+
+        if (!$instrucao) {
+            die('Query inválida '.mysqli_error($conexao));
+        } else {
+            mysqli_close($conexao);
+            header('Location: index.php'); 
+            // O header leva para a pagina inic
+        }
+    }   
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -42,14 +76,15 @@ o aluno ver a pontuação na tabela dele
             <form action="" id="background-red">
                 <div id="background-white">
                     <h2>Pontos da gincanas</h2>
-                    <input type="text" name="x" id="x" class="input pontos" placeholder="quantidade de pontos">
+                    <input type="text" name="pontosAluno" class="input pontos" placeholder="quantidade de pontos"><br>
+                    <input type="date" name="diaGincana">
                     <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "> -->
                     <div id="inputs-radio"> 
                         <input type="radio" name="sala-ano" value="1 informática">1 °informática<br>
                         <input type="radio" name="sala-ano" value="2 informática">2 informática<br>
                         <input type="radio" name="sala-ano" value="3 informática">3 informática<br>
                     </div>
-                    <button type="submit">Enviar</button>
+                    <button name="enviar" type="submit">Enviar</button>
                 </div>
         </main>
 
