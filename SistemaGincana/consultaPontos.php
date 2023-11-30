@@ -5,42 +5,45 @@ Registro dos dados/consulta
 o aluno ver a pontuação na tabela dele
  -->
 
- <?php
+<?php
 
-    include_once("conectaBD.php");
+include_once("conectaBD.php");
 
-    $tabela= "diasGincana";
-    $campos= "dia";
+$tabela = "diasGincana";
+$campos = "dia";
 
-    
 
-    if(isset($GET['enviar'])){
-        $pontosAluno = $_GET['pontosAluno'];
-        $diaGincana = $_GET['diaGincana'];
 
-        //Script para inserir um registro na tabela no Banco de Dados
+if (isset($GET['enviar'])) {
+    $pontosAluno = $_GET['pontosAluno'];
+    $diaGincana = $_GET['diaGincana'];
 
-        $sql = "INSERT INTO $tabela ()
+    //Script para inserir um registro na tabela no Banco de Dados
+
+    $sql = "INSERT INTO $tabela ()
         VALUES ()";
 
 
-        //executando instrução sql
-        $instrucao = mysqli_query($conexao,$sql);
-        //concluindo operação
+    //executando instrução sql
+    $instrucao = mysqli_query($conexao, $sql);
+    //concluindo operação
 
-        if (!$instrucao) {
-            die('Query inválida '.mysqli_error($conexao));
-        } else {
-            mysqli_close($conexao);
-            header('Location: index.php'); 
-            // O header leva para a pagina inic
-        }
-    }   
+    if (!$instrucao) {
+        die('Query inválida ' . mysqli_error($conexao));
+    } else {
+        mysqli_close($conexao);
+        header('Location: index.php');
+        // O header leva para a pagina inic
+    }
+}
+
+
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,6 +52,7 @@ o aluno ver a pontuação na tabela dele
     <link rel="stylesheet" href="css/forms.css">
 
 </head>
+
 <body>
 
     <div class="container">
@@ -61,7 +65,7 @@ o aluno ver a pontuação na tabela dele
                     <img src="imagens/etec.png" alt="logo Etec Antônio Furlan" width="150px">
                 </div>
                 <div id="img-csp">
-                   <img src="imagens/cps.png" alt="imagem centro paula souza" width="150px" >
+                    <img src="imagens/cps.png" alt="imagem centro paula souza" width="150px">
                 </div>
                 <div>
                     <img src="imagens/sp.png" alt="" width="300px" srcset="">
@@ -72,23 +76,53 @@ o aluno ver a pontuação na tabela dele
         </header>
 
         <main>
-           
+
             <form action="" id="background-red">
                 <div id="background-white">
                     <h2>Pontos da gincanas</h2>
                     <input type="text" name="pontosAluno" class="input pontos" placeholder="quantidade de pontos"><br>
-                    <input type="date" name="diaGincana">
                     <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "> -->
-                    <div id="inputs-radio"> 
+                    <div id="inputs-radio">
                         <input type="radio" name="sala-ano" value="1 informática">1 °informática<br>
                         <input type="radio" name="sala-ano" value="2 informática">2 informática<br>
-                        <input type="radio" name="sala-ano" value="3 informática">3 informática<br>
+                        <input type="radio" name="sala-ano" value="3 informática">3 informática<br><br>
+                        <?php
+                        // require_once
+                        
+                        $resultDia = $conexao->query("SELECT * FROM diasGincana");
+                        $resultAluno = $conexao->query("SELECT * FROM alunos");
+                        ?>
+
+                        <select>
+                            <?php
+                            while ($row = $resultDia->fetch_assoc()) {
+                                echo "<option>" . $row['dia'] . "</option>";
+                            }
+                            ?>
+                        </select><br><br>
+                            <select>
+                            <?php
+                            while ($row = $resultAluno->fetch_assoc()) {
+                                echo "<option>" . $row['nome'] . "</option>";
+                            }
+                            ?>
+                        </select>
+
                     </div>
+
                     <button name="enviar" type="submit">Enviar</button>
                 </div>
+                <table>
+
+
+
+
+                
+                </table>
         </main>
 
     </div>
 
 </body>
+
 </html>

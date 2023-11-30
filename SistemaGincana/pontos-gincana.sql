@@ -9,10 +9,7 @@ CREATE TABLE diasGincana(
 
 CREATE TABLE turmas (
     idTurma INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    turma VARCHAR(70), /*1info, ou 2info, ou 3 info,   1adm, ou 2 adm etc*/
-    idCurso INT,
-    CONSTRAINT fk_curso_turma FOREIGN KEY (idCurso)
-        REFERENCES curso (idCurso)
+    turma VARCHAR(70) /*1info, ou 2info, ou 3 info,   1adm, ou 2 adm etc*/
 );
 
 CREATE TABLE alunos (
