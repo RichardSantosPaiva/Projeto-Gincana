@@ -22,7 +22,7 @@ if (isset($_GET['enviar'])) {
             die('Query inválida ' . mysqli_error($conexao));
         } else {
             // Pontos adicionados com sucesso
-            
+
         }
     } else {
         // Aluno não encontrado na tabela. Pode ser exibida uma mensagem de erro.
@@ -155,11 +155,10 @@ if (isset($_GET['enviar'])) {
                                     ?>
                                 </div>
                                 <div>
-                                    <p>pontos aluno</p>
                                     <?php
 
                                     $sqlAluno = "select * from $tabela";
-                                    $instrucaoAluno = mysqli_query($conexao, $sqlAluno);
+                                    $instrucaoAluno     = mysqli_query($conexao, $sqlAluno);
                                     foreach ($instrucaoAluno as $exibe) {
                                         echo "<p>" . $exibe['pontos'] . "</p>";
                                     }
