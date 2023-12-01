@@ -97,16 +97,17 @@ if (isset($_GET['enviar'])) {
 
                         <select name="aluno">
                             <?php
+                            if(isset($_GET["enviar"])){
                             while ($row = $resultAluno->fetch_assoc()):
                                 ?>
-
                                 <?php
                                 echo "<option value='" . $row['idAlunos'] . "'>" . $row['nome'] . "</option>";
-                                ?>
+                            
+                            ?>
 
                                 <?php
                             endwhile;
-                            ?>
+                        }?>
                         </select><br><br>
                         <select name="dia">
                             <?php

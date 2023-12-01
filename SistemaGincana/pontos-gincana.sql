@@ -14,9 +14,9 @@ CREATE TABLE turmas (
 
 CREATE TABLE alunos (
     idAlunos INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    pontos INT,
-    nome VARCHAR(77),
-    idade INT(2),
+    pontos INT NOT NULL,
+    nome VARCHAR (77) NOT NULL,
+    idade INT(2) NOT NULL,
     idDiaGincana INT,
     idTurma INT,
      CONSTRAINT fk_aluno_diaGincana FOREIGN KEY (idDiaGincana )
