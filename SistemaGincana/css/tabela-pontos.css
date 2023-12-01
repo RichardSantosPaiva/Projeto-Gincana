@@ -1,0 +1,55 @@
+.background-red-pontos {
+    margin-top: 50px;
+    background-color: rgb(255, 0, 0,0.8) ;
+    padding: 10px;
+}
+
+div {
+    border:1px solid black;
+}
+.background-white-pontos{
+    background-color: white;
+    padding: 20px;
+}
+
+
+#tabela-pontos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#pontos-alunos, #pontos-turma {
+    width: 100%;
+}
+
+/* container do aluno*/
+#titulo-tbl-alunos, #dados-alunos {
+    display: grid;
+    grid-template-columns: 200px 300px auto;
+}
+
+#titulo-tbl-alunos div {
+    width: 100%;
+    text-align: center;
+}
+
+
+#dados-alunos, #dados-turma {
+    text-align: center;
+}
+
+/* formatações gerais */
+
+h3 {
+    text-align: center;
+    border: 1px solid black;
+}
+
+h4 {
+    text-align: center;
+}
+
+p {
+    color:blue;
+}

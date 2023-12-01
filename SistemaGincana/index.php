@@ -40,11 +40,15 @@ Página principal a pessoa cadastra ou ja vai direto registrar a pontuação do 
                 <div id="background-white">
                     <h2>Ben vindo(a)</h2>
                     <span>Não estou registrado, 
-                        quero me ... <a href="CadastroAluno.php">registrar</a>
+                        quero me ... <a href="CadastroAluno.php">Registrar</a>
                     </span>
                     
                     <span>Já to cadastrado, 
-                        quero ver as ... <a href="consultaPontoS.php">pontuações</a>
+                        quero ver as ... <a href="consultaPontoS.php">Pontuações</a>
+                    </span>
+
+                    <span>Adicionar uma data, 
+                        <a href="criaçãoDatas.php">Dias</a>
                     </span>
                         
                 </div>      
