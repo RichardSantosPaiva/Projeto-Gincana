@@ -1,44 +1,34 @@
-<!--
-CONSULTAPONTOS (trocar esse nome e do css)
-
-Registro dos dados/consulta
-o aluno ver a pontuação na tabela dele
- -->
-
 <?php
 
 include_once("conectaBD.php");
 
-
-
-
-
-
 if (isset($_GET['enviar'])) {
     $pontosAluno = $_GET['pontosAluno'];
-    $Aluno = $_GET['aluno'];
+    $alunoId = $_GET['aluno'];
     $dia = $_GET['dia'];
     $tabela = "alunos";
     $campos = "pontos";
-    //Script para inserir um registro na tabela no Banco de Dados
 
-    $sql = "INSERT INTO $tabela ($campos)
-        VALUES ('$pontosAluno')";
+    // Verificar se o aluno já está na tabela
+    $verificaAluno = "SELECT * FROM $tabela WHERE idAlunos = '$alunoId'";
+    $resultadoVerificacao = mysqli_query($conexao, $verificaAluno);
 
+    if (mysqli_num_rows($resultadoVerificacao) > 0) {
+        // O aluno já está na tabela, então podemos adicionar os pontos
+        $sql = "UPDATE $tabela SET $campos = $campos + '$pontosAluno' WHERE idAlunos = '$alunoId'";
+        $instrucao = mysqli_query($conexao, $sql);
 
-    //executando instrução sql
-    $instrucao = mysqli_query($conexao, $sql);
-    //concluindo operação
-
-    if (!$instrucao) {
-        die('Query inválida ' . mysqli_error($conexao));
+        if (!$instrucao) {
+            die('Query inválida ' . mysqli_error($conexao));
+        } else {
+            // Pontos adicionados com sucesso
+            
+        }
     } else {
-
-        // O header leva para a pagina inic
+        // Aluno não encontrado na tabela. Pode ser exibida uma mensagem de erro.
+        $mensagemErro = "Aluno não encontrado na tabela. Pontos não adicionados.";
     }
 }
-
-
 
 ?>
 
@@ -85,9 +75,9 @@ if (isset($_GET['enviar'])) {
                     <input type="text" name="pontosAluno" class="input pontos" placeholder="quantidade de pontos"><br>
                     <!-- <input type="text" name="y" id="y" class="input senha" placeholder="senha "> -->
                     <div id="inputs-radio">
-                        <input type="radio" name="sala-ano" value="1 informática">1 °informática<br>
-                        <input type="radio" name="sala-ano" value="2 informática">2 informática<br>
-                        <input type="radio" name="sala-ano" value="3 informática">3 informática<br><br>
+                        <input type="radio" name="sala-ano" value="1">1 °informática<br>
+                        <input type="radio" name="sala-ano" value="2">2 informática<br>
+                        <input type="radio" name="sala-ano" value="3">3 informática<br><br>
                         <?php
                         // require_once
                         
@@ -97,17 +87,17 @@ if (isset($_GET['enviar'])) {
 
                         <select name="aluno">
                             <?php
-                            if(isset($_GET["enviar"])){
-                            while ($row = $resultAluno->fetch_assoc()):
-                                ?>
-                                <?php
-                                echo "<option value='" . $row['idAlunos'] . "'>" . $row['nome'] . "</option>";
-                            
-                            ?>
+                            if (isset($_GET["enviar"])) {
+                                while ($row = $resultAluno->fetch_assoc()):
+                                    ?>
+                                    <?php
+                                    echo "<option value='" . $row['idAlunos'] . "'>" . $row['nome'] . "</option>";
 
-                                <?php
-                            endwhile;
-                        }?>
+                                    ?>
+
+                                    <?php
+                                endwhile;
+                            } ?>
                         </select><br><br>
                         <select name="dia">
                             <?php
