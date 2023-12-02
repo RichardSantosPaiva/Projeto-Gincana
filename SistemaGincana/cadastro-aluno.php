@@ -1,29 +1,24 @@
 <?php
   include_once("conecta-db.php");
 
-  //tabela no banco de dados
-  $tabela="alunos";
-  //define campos do insert
-  $campos = "nome, idade, idTurma";
-
-  // se o botão for pressionado
   if(isset($_GET['enviar'])){
-    $nomeAluno = $_GET['nomeAluno'];
-    $idadeAluno = $_GET['idadeAluno'];
-    $idTurmas = $_GET['turmas'];
+    $nome = $_GET['nome'];
+    $idade = $_GET['idade'];
+    $idTurma = $_GET['turma'];
 
     //Script para inserir um registro na tabela no Banco de Dados
 
-    $sql = "INSERT INTO $tabela ($campos) VALUES ('$nomeAluno', $idadeAluno, $idTurmas)";
+    $sql = "INSERT INTO Aluno (nome, idade, idTurma) VALUES ('$nome', $idade, $idTurma)";
+
     //executando instrução sql
     $instrucao = mysqli_query($conexao,$sql);
     //concluindo operação
 
     if (!$instrucao) {
-      die('Query inválida '.mysqli_error($conexao));
+      echo die('Query inválida '.mysqli_error($conexao));
     } else {
       mysqli_close($conexao);
-      header('Location: index.php'); 
+      header('Location: cadastro-aluno.php');
     }
   }
 ?>
@@ -52,16 +47,17 @@
         <form method="GET">
           <h2>Cadastro do Aluno</h2>
 
-          <input type="text" name="nomeAluno" class="input nome" placeholder="Nome completo">
-          <input type="number" name="idadeAluno" class="input idade" placeholder="sua idade" max="18" min="15">
+          <input type="text" name="nome" placeholder="Nome completo" required>
+          <input type="number" name="idade" placeholder="Sua idade" max="20" min="15" required>
 
-          <select name="turmas" >
-            <option value="1">1º INFO</option>
-            <option value="2">2º INFO</option>
-            <option value="3">3º INFO</option>
-            <option value="1">1º ADM</option>
-            <option value="2">2º ADM</option>
-            <option value="3">3º ADM</option>
+          <select name="turma" required>
+            <?php
+              $result = $conexao->query("SELECT * FROM Turma");
+
+              while($row = $result->fetch_assoc()){
+                echo "<option value=".$row['idTurma'].">".$row['turma']."</option>";
+              }
+            ?>
           </select>
 
           <button name="enviar" class="btn" type="submit">Enviar</button>

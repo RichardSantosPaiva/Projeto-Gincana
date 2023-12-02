@@ -1,50 +1,43 @@
-    DROP DATABASE IF EXISTS  gincana;
-    CREATE DATABASE gincana;
-    USE gincana;
+DROP DATABASE IF EXISTS gincana;
+CREATE DATABASE gincana;
+USE gincana;
 
-    CREATE TABLE diasGincana(
-        idDiaGincana INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        dia DATE
-    );
+CREATE TABLE Dia (
+  idDia INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  data DATE NOT NULL UNIQUE
+);
 
-    CREATE TABLE turmas (
-        idTurma INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        turma VARCHAR(70) /*1info, ou 2info, ou 3 info,   1adm, ou 2 adm etc*/
-        
-    );
+CREATE TABLE Turma (
+  idTurma INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  turma VARCHAR(70) NOT NULL
+);
 
-    CREATE TABLE alunos (
-        idAlunos INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        pontos INT NOT NULL,
-        nome VARCHAR (77) NOT NULL,
-        idade INT(2) NOT NULL,
-        idDiaGincana INT,
-        idTurma INT,
-        CONSTRAINT fk_aluno_diaGincana FOREIGN KEY (idDiaGincana )
-            REFERENCES diasGincana (idDiaGincana ),
-        CONSTRAINT fk_aluno_turma FOREIGN KEY (idTurma)
-            REFERENCES turmas (idTurma)
-    );
+CREATE TABLE Aluno (
+  idAluno INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  nome VARCHAR (77) NOT NULL,
+  idade INT(2) NOT NULL,
+  idTurma INT,
+  CONSTRAINT fkAlunoTurma FOREIGN KEY (idTurma) REFERENCES Turma (idTurma)
+);
 
-    /*
-    create table AlunosTurma (
-        idAlunosTurma INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        idTurma INT,
-        idAlunos INT,
-        CONSTRAINT fk_aluno_turma FOREIGN KEY (idTurma)
-            REFERENCES turmas (idTurma),
-        CONSTRAINT fk_alunos_turma FOREIGN KEY (idAlunos)
-            REFERENCES alunos (idAlunos)
-    );
-    */
+CREATE TABLE Pontos (
+  idPontos INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  pontos INT NOT NULL,
+  idAluno INT,
+  idDia INT,
+  CONSTRAINT fkPontosAluno FOREIGN KEY (idAluno) REFERENCES Aluno (idAluno),
+  CONSTRAINT fkPontosDia FOREIGN KEY (idDia) REFERENCES Dia (idDia)
+);
 
-    /* Inserindo os dados na tabela turma */
-    INSERT INTO turmas (turma) VALUES ('1º INFO');
-    INSERT INTO turmas (turma) VALUES ('2º INFO');
-    INSERT INTO turmas (turma) VALUES ('3º INFO');
-    INSERT INTO turmas (turma) VALUES ('1º ADM');
-    INSERT INTO turmas (turma) VALUES ('2º ADM');
-    INSERT INTO turmas (turma) VALUES ('3º ADM');
-
-
-    
+INSERT INTO Turma (turma) VALUES ('1° ADM');
+INSERT INTO Turma (turma) VALUES ('2° ADM');
+INSERT INTO Turma (turma) VALUES ('3° ADM');
+INSERT INTO Turma (turma) VALUES ('1° INFO');
+INSERT INTO Turma (turma) VALUES ('2° INFO');
+INSERT INTO Turma (turma) VALUES ('3° INFO');
+INSERT INTO Turma (turma) VALUES ('1° CONT');
+INSERT INTO Turma (turma) VALUES ('2° CONT');
+INSERT INTO Turma (turma) VALUES ('3° CONT');
+INSERT INTO Turma (turma) VALUES ('1° RH');
+INSERT INTO Turma (turma) VALUES ('2° RH');
+INSERT INTO Turma (turma) VALUES ('3° RH');

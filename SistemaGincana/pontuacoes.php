@@ -1,5 +1,5 @@
 <?php
-  include_once("conectaBD.php");
+  include_once("conecta-db.php");
 
   if (isset($_GET['enviar'])) {
   }
@@ -31,23 +31,38 @@
           <input type="text" name="pontosAluno" placeholder="Quantidade de pontos">
 
           <?php
-            /* $resultDia = $conexao->query("SELECT * FROM diasGincana"); */
-            /* $resultAluno = $conexao->query("SELECT * FROM alunos"); */
+            $resultadoAluno = $conexao->query("SELECT * FROM Aluno");
+            $resultadoDia = $conexao->query("SELECT * FROM Dia");
           ?>
 
           <select name="aluno" required>
             <?php
-              /* while ($row = $resultAluno->fetch_assoc()) { */
-              /*   echo "<option value='" . $row['idAlunos'] . "'>" . $row['nome'] . "</option>"; */
-              /* } */
+              if ($resultadoAluno->num_rows === 0) {
+                echo "<option value='' disabled hidden selected>Nenhum aluno cadastrado</option>";
+              } else {
+                echo "<option value='' disabled hidden selected>Selecione um aluno</option>";
+
+                while ($row = $resultadoAluno->fetch_assoc()) {
+                  $sql = "SELECT turma FROM Turma WHERE idTurma = ". $row['idTurma'];
+                  $result = $conexao->query($sql);
+
+                  echo "<option value='" . $row['idAluno'] . "'>" . $row['nome'] . " (". $result->fetch_assoc()['turma'] . ")" . "</option>";
+                }
+              }
             ?>
           </select>
 
           <select name="dia" required>
             <?php
-              /* while ($row = $resultDia->fetch_assoc()) { */
-              /*   echo "<option value='" . $row['idDiaGincana'] . "'>" . $row['dia'] . "</option>"; */
-              /* } */
+              if ($resultadoDia->num_rows === 0) {
+                echo "<option value='' disabled hidden selected>Nenhuma data cadastrada</option>";
+              } else {
+                echo "<option value='' disabled hidden selected>Selecione uma data</option>";
+
+                while ($row = $resultadoDia->fetch_assoc()) {
+                  echo "<option value='" . $row['idDia'] . "'>" . $row['data'] . "</option>";
+                }
+              }
             ?>
           </select>
 
