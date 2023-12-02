@@ -92,7 +92,80 @@
       </section>
 
       <section class="box">
-        <ul></ul>
+          <?php
+            $sqlTableData = "SELECT Aluno.idAluno, Aluno.nome AS aluno_nome, Turma.turma, Dia.data, Pontos.pontos 
+                   FROM Aluno
+                   JOIN Turma ON Aluno.idTurma = Turma.idTurma
+                   LEFT JOIN Pontos ON Aluno.idAluno = Pontos.idAluno
+                   LEFT JOIN Dia ON Pontos.idDia = Dia.idDia
+                   WHERE Dia.data IS NOT NULL
+                   ORDER BY Aluno.idTurma ASC, Aluno.nome ASC, Dia.data ASC";
+
+            $resultTableData = $conexao->query($sqlTableData);
+
+            $tableData = [];
+
+            if ($resultTableData->num_rows > 0) {
+              while ($row = $resultTableData->fetch_assoc()) {
+                $alunoId = $row['idAluno'];
+                $data = $row['data'];
+                $pontos = $row['pontos'];
+
+                if (!isset($tableData[$alunoId])) {
+                  $tableData[$alunoId] = [
+                    'aluno_nome' => $row['aluno_nome'],
+                    'turma' => $row['turma'],
+                    'pontos' => [],
+                    'total_pontos' => 0,
+                  ];
+                }
+
+                $tableData[$alunoId]['pontos'][$data] = $pontos;
+
+                $tableData[$alunoId]['total_pontos'] += $pontos;
+              }
+            }
+
+            if (!empty($tableData)) {
+              echo "<table border='1'>";
+              echo "<tr><th>Aluno</th><th>Turma</th>";
+
+              $dates = [];
+
+              foreach ($tableData as $aluno) {
+                $dates = array_merge($dates, array_keys($aluno['pontos']));
+              }
+
+              $dates = array_unique($dates);
+              sort($dates);
+
+              foreach ($dates as $date) {
+                echo "<th>" . date('d/m/Y', strtotime($date)) . "</th>";
+              }
+
+              echo "<th>Total Pontos</th>";
+              echo "</tr>";
+
+              foreach ($tableData as $aluno) {
+                echo "<tr>";
+                echo "<td>" . $aluno['aluno_nome'] . "</td>";
+                echo "<td>" . $aluno['turma'] . "</td>";
+
+                foreach ($dates as $date) {
+                  $pontos = isset($aluno['pontos'][$date]) ? $aluno['pontos'][$date] : '-';
+                  echo "<td>" . $pontos . "</td>";
+                }
+
+                echo "<td>" . $aluno['total_pontos'] . "</td>";
+
+                echo "</tr>";
+              }
+
+              echo "</table>";
+            } else {
+              echo "Nenhum registro encontrado.";
+            }
+          ?>
       </section>
     </main>
   </body>
