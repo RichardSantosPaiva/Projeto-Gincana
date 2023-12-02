@@ -2,6 +2,25 @@
   include_once("conecta-db.php");
 
   if (isset($_GET['enviar'])) {
+    $idAluno = $_GET['aluno'];
+    $idDia = $_GET['dia'];
+    $pontos = $_GET['pontosAluno'];
+
+    $sqlCheckExisting = "SELECT * FROM Pontos WHERE idAluno = $idAluno AND idDia = $idDia";
+    $resultCheckExisting = $conexao->query($sqlCheckExisting);
+
+    if ($resultCheckExisting->num_rows > 0) {
+      $row = $resultCheckExisting->fetch_assoc();
+      $existingPontos = $row['pontos'];
+
+      $sqlUpdate = "UPDATE Pontos SET pontos = $pontos WHERE idAluno = $idAluno AND idDia = $idDia";
+      $conexao->query($sqlUpdate);
+    } else {
+      $sqlInsert = "INSERT INTO Pontos (idAluno, idDia, pontos) VALUES ($idAluno, $idDia, $pontos)";
+      $conexao->query($sqlInsert);
+    }
+
+    header("Location: pontuacoes.php");
   }
 ?>
 
@@ -70,6 +89,10 @@
 
           <button name="enviar" class="btn" type="submit">Enviar</button>
         </form>
+      </section>
+
+      <section class="box">
+        <ul></ul>
       </section>
     </main>
   </body>
