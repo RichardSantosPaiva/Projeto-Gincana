@@ -1,27 +1,20 @@
 <?php
-  include_once("conectaBD.php");
-
-  $tabela= "diasGincana";
-  $campos= "dia";
+  include_once("conecta-db.php");
 
   if(isset($_GET['enviar'])){
-    $diaGincana = $_GET['diaGincana'];
+    $diaGincana = $_GET['data'];
 
-    //Script para inserir um registro na tabela no Banco de Dados
-
-    $sql = "INSERT INTO $tabela ($campos)
-    VALUES ('$diaGincana')";
-
+    $sql = "INSERT INTO Dia (data) VALUES ('$diaGincana')";
 
     //executando instrução sql
     $instrucao = mysqli_query($conexao,$sql);
     //concluindo operação
 
     if (!$instrucao) {
-      die('Query inválida '.mysqli_error($conexao));
+      die('Query inválida ' . mysqli_error($conexao));
     } else {
       mysqli_close($conexao);
-      header('Location: index.php');
+      header('Location: criacao-datas.php');
     }
   }
 ?>
@@ -48,7 +41,7 @@
         <form>
           <h2>Fases da gincana</h2>
 
-          <input type="date" name="diaGincana" class="input pontos" placeholder="Dias das fases"><br>
+          <input type="date" name="data" class="input pontos"><br>
 
           <button name="enviar" class="btn" type="submit">Enviar</button>
         </form>

@@ -28,11 +28,11 @@
       <section class="box">
         <form>
           <h2>Pontos da gincanas</h2>
-          <input type="text" name="pontosAluno" placeholder="Quantidade de pontos">
+          <input type="number" name="pontosAluno" placeholder="Quantidade de pontos" required>
 
           <?php
-            $resultadoAluno = $conexao->query("SELECT * FROM Aluno");
-            $resultadoDia = $conexao->query("SELECT * FROM Dia");
+            $resultadoAluno = $conexao->query("SELECT * FROM Aluno ORDER BY idTurma ASC, nome ASC");
+            $resultadoDia = $conexao->query("SELECT * FROM Dia ORDER BY data ASC");
           ?>
 
           <select name="aluno" required>
@@ -46,7 +46,7 @@
                   $sql = "SELECT turma FROM Turma WHERE idTurma = ". $row['idTurma'];
                   $result = $conexao->query($sql);
 
-                  echo "<option value='" . $row['idAluno'] . "'>" . $row['nome'] . " (". $result->fetch_assoc()['turma'] . ")" . "</option>";
+                  echo "<option value='" . $row['idAluno'] . "'>" . "[". $result->fetch_assoc()['turma'] . "] " . $row['nome'] . "</option>";
                 }
               }
             ?>
@@ -60,7 +60,9 @@
                 echo "<option value='' disabled hidden selected>Selecione uma data</option>";
 
                 while ($row = $resultadoDia->fetch_assoc()) {
-                  echo "<option value='" . $row['idDia'] . "'>" . $row['data'] . "</option>";
+                  $data = new DateTimeImmutable($row['data']);
+
+                  echo "<option value='" . $row['idDia'] . "'>" . $data->format('d/m/Y') . "</option>";
                 }
               }
             ?>
