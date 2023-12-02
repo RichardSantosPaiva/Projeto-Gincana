@@ -1,62 +1,30 @@
-<!-- 
-Página principal a pessoa cadastra ou ja vai direto registrar a pontuação do dia e ver a soma
--->
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Gincana</title>
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/index.css">
 
-</head>
-<body>
+    <link rel="stylesheet" href="css/global.css">
+  </head>
+  <body>
+    <header>
+      <img src="imagens/etec.png" alt="logo Etec Antônio Furlan" width="150px">
+      <img src="imagens/cps.png" alt="imagem centro paula souza" width="150px" >
+      <img src="imagens/sp.png" alt="" width="300px" srcset="">
+    </header>
 
-    <div class="container">
+    <main>
+      <section class="box">
+        <h2>Bem-vindo(a)</h2>
 
-        <header>
-
-            <div id="header-imgs"> <!-- começo imgs cabeçalho-->
-
-                <div id="area-logo">
-                    <img src="imagens/etec.png" alt="logo Etec Antônio Furlan" width="150px">
-                </div>
-                <div id="img-csp">
-                   <img src="imagens/cps.png" alt="imagem centro paula souza" width="150px" >
-                </div>
-                <div>
-                    <img src="imagens/sp.png" alt="" width="300px" srcset="">
-                </div>
-
-            </div><!-- fim imgs cabeçalho-->
-
-        </header>
-
-        <main>
-           
-
-            <div id="background-red" action="">
-                <div id="background-white">
-                    <h2>Ben vindo(a)</h2>
-                    <span>Não estou registrado, 
-                        quero me ... <a href="CadastroAluno.php">Registrar</a>
-                    </span>
-                    
-                    <span>Já to cadastrado, 
-                        quero ver as ... <a href="consultaPontoS.php">Pontuações</a>
-                    </span>
-
-                    <span>Adicionar uma data, 
-                        <a href="criaçãoDatas.php">Dias</a>
-                    </span>
-                        
-                </div>      
-            </div>
-            </form>  
-        </main>
-
-    </div>
-
-</body>
+        <h3>Cadastrar aluno:</h3>
+        <a href="cadastro-aluno.php" class="btn">Registrar</a>
+        <h3>Consultar pontos:</h3>
+        <a href="pontuacoes.php" class="btn">Pontuações</a>
+        <h3>Adicionar datas:</h3>
+        <a href="criacao-datas.php" class="btn">Datas</a>
+      </section>
+    </main>
+  </body>
 </html>
